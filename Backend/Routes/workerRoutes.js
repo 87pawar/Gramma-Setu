@@ -11,7 +11,7 @@ const { createWorkerProfile,
 updateWorkerAvailability} = require("../Controller/workerController");
 
 const { authmiddleware } = require("../Middleware/authMiddleware");
-const roleMiddleware = require("../middleware/roleMiddleware");
+const roleMiddleware = require("../Middleware/roleMiddleware");
 const {
     validateWorkerProfile
 } = require("../Middleware/workerValidationMiddleware");
