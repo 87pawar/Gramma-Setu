@@ -4,7 +4,7 @@ const router=express.Router();
 //import register function
 const {registerUser,resetPassword,forgotPassword,loginUser, getprofile,changePassword}=require("../Controller/authController.js");
 const {authmiddleware}=require("../Middleware/authMiddleware.js");
-const roleMiddleware = require("../middleware/roleMiddleware");
+const roleMiddleware = require("../Middleware/roleMiddleware");
 const {
     validateRegistration
 } = require("../Middleware/validationMiddleware");
