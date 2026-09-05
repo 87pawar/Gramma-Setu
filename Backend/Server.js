@@ -3,13 +3,13 @@
 const authRoutes=require("./Routes/authRouters.js");
 // const Controller=require("./Controller/authController.js");
 const workerRoutes = require("./Routes/workerRoutes.js");
-const serviceRequestRoutes = require("./Routes/serviceRequestRoutes");
-const reviewRoutes = require("./Routes/reviewRoutes");
-const notificationRoutes = require("./Routes/notificationRoutes");
+const serviceRequestRoutes = require("./Routes/serviceRequestRoutes.js");
+const reviewRoutes = require("./Routes/reviewRoutes.js");
+const notificationRoutes = require("./Routes/notificationRoutes.js");
 // Import admin routes
-const adminRoutes = require("./Routes/adminRoutes");
-const { generalLimiter } = require("./Middleware/rateLimitMiddleware");
-const { errorMiddleware } = require("./Middleware/errorMiddleware");
+const adminRoutes = require("./Routes/adminRoutes.js");
+const { generalLimiter } = require("./Middleware/rateLimitMiddleware.js");
+const { errorMiddleware } = require("./Middleware/errorMiddleware.js");
 const cors = require("cors");
 const helmet = require("helmet");
 
