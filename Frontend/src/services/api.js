@@ -1,13 +1,29 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5400";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://grama-setu-backend.onrender.com";
 
 async function apiRequest(endpoint, options = {}) {
   const token = localStorage.getItem("token");
+
   const response = await fetch(`${API_URL}${endpoint}`, {
     ...options,
-    headers: { ...(options.body instanceof FormData ? {} : { "Content-Type": "application/json" }), ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(options.headers || {}) },
+    headers: {
+      ...(options.body instanceof FormData
+        ? {}
+        : { "Content-Type": "application/json" }),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(options.headers || {}),
+    },
   });
+
   const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.message || "Something went wrong. Please try again.");
+
+  if (!response.ok) {
+    throw new Error(
+      data.message || "Something went wrong. Please try again."
+    );
+  }
+
   return data;
 }
 export const registerUser = (data) => apiRequest("/api/auth/register", { method: "POST", body: JSON.stringify(data) });
