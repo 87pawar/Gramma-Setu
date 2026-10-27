@@ -1,3 +1,5 @@
+const { canonicalizePublicRole } = require("../utils/roles");
+
 // Middleware to validate user registration data
 const validateRegistration = (req, res, next) => {
     try {
@@ -49,15 +51,12 @@ const validateRegistration = (req, res, next) => {
             });
         }
 
-        // Allowed roles
-        const allowedRoles = [
-            "user",
-            "farmer",
-            "Worker"
-        ];
+        // Keep supported legacy UI values, but store only canonical public roles.
+        if (role) {
+            req.canonicalRole = canonicalizePublicRole(role);
+        }
 
-        // Validate role only when provided
-        if (role && !allowedRoles.includes(role)) {
+        if (role && !req.canonicalRole) {
             return res.status(400).json({
                 message: "Invalid role"
             });

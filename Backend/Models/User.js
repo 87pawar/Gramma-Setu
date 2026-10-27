@@ -25,8 +25,8 @@ const userSchema=new mongoose.Schema({
     role:{
         type:String,
         // enum:only specific values are allowed.
-        enum:["Farmer","Worker","Admin","user"],
-        default:"Admin",
+        enum:["user","farmer","worker","admin","Farmer","Worker","Admin"],
+        default:"user",
         required:true
     },
     // Stores whether the user's account has been blocked by an admin

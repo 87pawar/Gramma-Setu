@@ -1,0 +1,6 @@
+{
+  "user": ["user"],
+  "farmer": ["farmer", "Farmer"],
+  "worker": ["worker", "Worker"],
+  "admin": ["admin", "Admin"]
+}

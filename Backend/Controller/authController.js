@@ -4,6 +4,7 @@ const User=require("../Models/User.js");
 const bcrypt=require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+const { canonicalizePublicRole } = require("../utils/roles");
 
 //create registeruser
 const registerUser=async(req,res)=>{
@@ -17,7 +18,9 @@ const registerUser=async(req,res)=>{
             role,
             location 
         }=req.body;
-        if(!name||!email||!phone||!password||!role||!location){
+        const canonicalRole = canonicalizePublicRole(role);
+
+        if(!name||!email||!phone||!password||!canonicalRole||!location){
             return res.status(400).json({
                 message:"Please do not leave any field empty"
             });
@@ -37,7 +40,7 @@ const registerUser=async(req,res)=>{
             email,
             phone,
             password: hashpass,
-            role,
+            role: canonicalRole,
             location
         });
         const saveduser=await user.save();
