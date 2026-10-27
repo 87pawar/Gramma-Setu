@@ -10,6 +10,7 @@ const notificationRoutes = require("./Routes/notificationRoutes.js");
 const adminRoutes = require("./Routes/adminRoutes.js");
 const { generalLimiter } = require("./Middleware/rateLimitMiddleware.js");
 const { errorMiddleware } = require("./Middleware/errorMiddleware.js");
+const { createCorsOptions } = require("./utils/corsOptions");
 const cors = require("cors");
 const helmet = require("helmet");
 
@@ -25,9 +26,7 @@ const mongoose = require("mongoose");
 // create app
 const app=express();
 app.use(helmet());
-app.use(cors({
-  origin: process.env.FRONTEND_URL
-}));
+app.use(cors(createCorsOptions()));
 //json middleware
 app.use(express.json());
 //create route
